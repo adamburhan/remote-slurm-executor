@@ -323,7 +323,7 @@ class RemoteSlurmExecutor(slurm.SlurmExecutor):
             "set -e  # Exit immediately if a command exits with a non-zero status.",
             "export UV_PYTHON_PREFERENCE='managed'  # Prefer using the python managed by uv over the system's python.",
             "export UV_LINK_MODE='copy'  # Don't quit the job if we can't use hardlinks from the cache.",
-            "source $HOME/.local/env  # Needed so we can run `uv` in a non-interactive job, apparently.",
+            "source $HOME/.cargo/env  # Needed so we can run `uv` in a non-interactive job, apparently.",
             (
                 f"git clone {self.repo_dir_on_cluster} {_job_source_path}"
                 # f"git worktree add {_worktree_path} {commit} --force --force --detach --lock "
