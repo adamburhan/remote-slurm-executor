@@ -463,7 +463,7 @@ class RemoteSlurmExecutor(slurm.SlurmExecutor):
 
     def setup_uv(self) -> str:
         home = self.login_node.get_output("echo $HOME")
-        # TODO: Fix this: shouldn't be hard-coded!
+        # TODO: Fix this: shouldn't be hard-coded! changed from .cargo to .local
         hard_coded_uv_path = f"{home}/.local/bin/uv"
 
         def _uv_is_installed_at_hard_coded_path() -> bool:
