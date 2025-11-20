@@ -281,9 +281,9 @@ class RemoteSlurmExecutor(slurm.SlurmExecutor):
         # todo: Is this --offline flag actually useful?
         # offline = "--offline " if not self.internet_access_on_compute_nodes else ""
         # self.python = f"{uv_path} run --python={CURRENT_PYTHON} python"
-        setup_python_command = f"{_uv_path} python install {CURRENT_PYTHON}"
+        setup_python_command = f"uv python install {CURRENT_PYTHON}"
         sync_dependencies_command = (
-            f"{_uv_path} sync --python={CURRENT_PYTHON} --all-extras --frozen"
+            f"uv sync --python={CURRENT_PYTHON} --all-extras --frozen"
         )
 
         repo_url = _current_repo_url()
@@ -323,7 +323,7 @@ class RemoteSlurmExecutor(slurm.SlurmExecutor):
             "set -e  # Exit immediately if a command exits with a non-zero status.",
             "export UV_PYTHON_PREFERENCE='managed'  # Prefer using the python managed by uv over the system's python.",
             "export UV_LINK_MODE='copy'  # Don't quit the job if we can't use hardlinks from the cache.",
-            "source $HOME/.cargo/env  # Needed so we can run `uv` in a non-interactive job, apparently.",
+            #"source $HOME/.cargo/env  # Needed so we can run `uv` in a non-interactive job, apparently.",
             (
                 f"git clone {self.repo_dir_on_cluster} {_job_source_path}"
                 # f"git worktree add {_worktree_path} {commit} --force --force --detach --lock "
